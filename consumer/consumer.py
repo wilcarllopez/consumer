@@ -6,6 +6,7 @@ import pika
 import sys
 import yaml
 
+logger = logging.getLogger(__name__)
 
 def setup_logging(default_path='logging_config.yml', default_level=logging.INFO, env_key='LOG_CFG'):
     """Setting up the logging config"""
@@ -47,8 +48,7 @@ def main():
 
 
 if __name__ == '__main__':
-    setup_logging()
-    logger = logging.getLogger(__name__)
+    setup_logging() 
     logger.info("Creating new log file")
     logger.info("Logging setup completed")
     main()
