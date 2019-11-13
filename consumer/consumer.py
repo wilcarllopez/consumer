@@ -30,7 +30,8 @@ def main():
     """Main function of the module"""
     config = configparser.ConfigParser()
     dir = os.path.dirname(os.path.abspath(__file__))
-    config.read(dir + os.sep + 'config.ini')
+    dirpath = dir + os.sep + 'config.ini'
+    config.read(dirpath, encoding='utf-8')
 
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=config['default']['host']))
     channel = connection.channel()
@@ -43,6 +44,7 @@ def main():
         else:
             logger.info("Waiting for messages. To exit press CTRL+C")
             connection.sleep(int(config['default']['timer']))
+
 
 if __name__ == '__main__':
     setup_logging()
